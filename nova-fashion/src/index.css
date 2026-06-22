@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-primary: #2874f0;     /* Flipkart Blue */
+  --color-secondary: #f8e12a;   /* Flipkart Yellow */
+  --color-accent: #fb641b;      /* Flipkart Orange */
+  --color-dark: #212121;        /* Pure Charcoal text */
+  --color-card-bg: #ffffff;     /* Crisp white background */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f3f6;
+}
+::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2874f0;
+}
+
+/* Glassmorphic/Card Utilities repurposed for Flipkart Clean White Cards */
+.glass {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.12);
+}
+
+.glass-premium {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #2874f0 0%, #1a56b8 50%, #fb641b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Pulse Glow Effects simplified for Light Mode standard styling */
+.pulse-glow {
+  position: relative;
+}
+.pulse-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 10px rgba(40, 116, 240, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.pulse-glow:hover::after {
+  opacity: 1;
+}

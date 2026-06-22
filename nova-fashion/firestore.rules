@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // catch-all default deny rule
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper to validate standard alphanumeric document IDs
+    function isValidId(id) {
+      return id is string && id.size() <= 256;
+    }
+
+    // Users Collection Rule Set
+    match /users/{phoneNumber} {
+      allow get: if isValidId(phoneNumber);
+      allow create: if isValidId(phoneNumber) && request.resource.data.phone == phoneNumber;
+      allow update: if isValidId(phoneNumber) && request.resource.data.phone == phoneNumber;
+      allow delete: if false;
+    }
+
+    // Products Collection Rule Set
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update, delete: if isValidId(productId);
+    }
+
+    // Orders Collection Rule Set
+    match /orders/{orderId} {
+      allow create: if isValidId(orderId);
+      allow get, list: if true;
+      allow update, delete: if isValidId(orderId);
+    }
+  }
+}

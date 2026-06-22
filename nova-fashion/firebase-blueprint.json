@@ -1,0 +1,82 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Apparel user account containing phone number and credential",
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "description": "User login phone number"
+        },
+        "password": {
+          "type": "string",
+          "description": "Raw or hashed credentials string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Account registration timestamp"
+        }
+      },
+      "required": ["phone", "password", "createdAt"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Fashion apparel or dress item in the marketplace",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "category": { "type": "string" },
+        "images": { "type": "array" },
+        "sizes": { "type": "array" },
+        "colors": { "type": "array" },
+        "rating": { "type": "number" },
+        "reviews": { "type": "array" },
+        "tags": { "type": "array" },
+        "inStock": { "type": "number" },
+        "features": { "type": "array" }
+      },
+      "required": ["id", "name", "price", "category", "images", "sizes", "colors", "rating", "inStock"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A booking or transaction log containing order details and the user phone number identifier",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "email": { "type": "string" },
+        "shippingAddress": { "type": "string" },
+        "paymentMethod": { "type": "string" },
+        "items": { "type": "array" },
+        "totalPrice": { "type": "number" },
+        "currency": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "customerName", "customerPhone", "email", "shippingAddress", "paymentMethod", "items", "totalPrice", "currency", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{phoneNumber}": {
+      "schema": "User",
+      "description": "Secure list of users registered by their phone number"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Market catalog containing all dresses and garments managed by the admin"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "The client bookings or orders list queryable by their customer phone number"
+    }
+  }
+}

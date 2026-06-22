@@ -1,0 +1,6 @@
+{
+  "name": "NOVA FASHION",
+  "description": "Ultra-premium futuristic luxury fashion storefront featuring interactive lookbooks, multi-currency checkout, dynamic 3D mockups, and a server-side AI-powered virtual stylist.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
